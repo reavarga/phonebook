@@ -5,17 +5,16 @@
 
 class Human: public Record {
 protected:
-    String number;
     String nickname;
     String birthday;
-    String email;
-    String comment;
 public:
     Human(String &name, String &number, String &nickname, String &birthday, String &email, String &comment);
     ~Human();
-    void print() const;
-
-
+    void print() const override;
+    void save() const override;
+    void setNickName(const String& nickname);
+    void setbirthday(const String& birthday);
+    void modify() override;
 
 
 

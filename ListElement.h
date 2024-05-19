@@ -24,6 +24,7 @@ public:
         iterator& operator++();
         iterator operator++(int);
         Record*& operator*() const;
+        Record* operator->() const;
         bool operator==(iterator rhs) const;
         bool operator!=(iterator rhs) const;
     };
@@ -35,6 +36,8 @@ public:
         const_iterator& operator++();
         const_iterator operator++(int);
         Record* const& operator*() const;
+        Record* const& operator->() const;
+
         bool operator==(const_iterator rhs) const;
         bool operator!=(const_iterator rhs) const;
     };
@@ -45,10 +48,14 @@ public:
 
     RecordList();
     void add(Record* rec);
-    void remove(String& nev);
-    Record* search(String& name) const;
+    void remove(const String& nev);
+    void search(const String &name) const;
+    void searchByNumber(const String& num) const;
     bool configure(const String& company, const String& human);
-    //bool close();
+    void save() const;
+    void modify(const String& name);
+
+        //bool close();
     ~RecordList();
 
 };

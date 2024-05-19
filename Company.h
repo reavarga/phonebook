@@ -7,18 +7,19 @@
 class Company:public Record {
 protected:
 
- String number;
-    String email;
     String location;
     String occupation;
     String ceoname;
-    String comment;
 public:
     Company(String &name, String &number, String &email, String &location, String &occupation, String &ceoname,
             String &comment);
     ~Company();
-    void print();
-
+    void print() const override;
+    void save() const override;
+    void modify() override;
+    void setLocation(const String& location);
+    void setOccupation(const String& occupation);
+    void setCeoname(const String& ceoname);
 };
 
 

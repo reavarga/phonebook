@@ -2,9 +2,7 @@
 #include <cstring>
 #include <iostream>
 
-void String::printDbg(const char *txt) const {
-    std::cout << txt << "[" << len << "], " << (pData ? pData : "(NULL)") << '|' << std::endl;
-}
+
 String::String(): len(0) {
     pData=new char[1];
     pData[0]='\0';
@@ -18,18 +16,17 @@ const char *String::c_str() const {
     return this->pData;
 }
 
+String::String(const char& c):len(1){
+    pData=new char[2];
+    pData[0]=c;
+    pData[1]='\0';
+}
+
 String::~String() {
     delete[] this->pData;
 }
 void String::setsize(size_t size){
     this->len=size;
-}
-
-String:: String (char const& c){
-    pData=new char [2];
-    pData[0]=c;
-    pData[1]='\0';
-    len=1;
 }
 
 String::String(const char *str){
@@ -45,12 +42,22 @@ String::String (const String& str){
     strcpy(this->pData,str.c_str());
 }
 
-String& String::operator=(const String& str){
+String& String::operator=(const String str){
     if(str.c_str()==this->pData);
     else {delete[] this->pData;
         this->len=str.size();
         pData=new char[this->len+1];
         strcpy(pData,str.c_str());
+    }
+    return *this;
+}
+
+String& String::operator=(const char* str){
+    if(str==this->pData);
+    else {delete[] this->pData;
+        this->len=strlen(str);
+        pData=new char[this->len+1];
+        strcpy(pData,str);
     }
     return *this;
 }
@@ -97,9 +104,9 @@ String operator+(char c, String& str){
 }
 std::istream& String::getline(std::istream& is, String& s, char div){
     s=String();
-    int uj;
-    while( (uj=is.get())!=is.eof() && (char)uj!=div){
-        s=s+ ((char)uj);
+    char uj;
+    while(is.get(uj) && uj!=div){
+        s=s+uj;
     }
     return is;
 }
