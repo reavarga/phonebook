@@ -1,4 +1,3 @@
-
 #ifndef NHF2_HUMAN_H
 #define NHF2_HUMAN_H
 #include "Record.h"
@@ -8,14 +7,13 @@ protected:
     String nickname;
     String birthday;
 public:
-    Human(String &name, String &number, String &nickname, String &birthday, String &email, String &comment);
+    Human(const String &name, const String &number, const String &nickname, const String &birthday, const String &email, const String &comment);
     ~Human();
-    void print() const override;
+    Human(const Human& human);
+    void print(std::ostream &os=std::cout) const override;
     void save() const override;
-    void setNickName(const String& nickname);
-    void setbirthday(const String& birthday);
-    void modify() override;
-
+    void setBirthday(const String& birthday);
+    void setNickname(const String& nickname);
 
 
 };

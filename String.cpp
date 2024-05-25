@@ -16,18 +16,18 @@ const char *String::c_str() const {
     return this->pData;
 }
 
-String::String(const char& c):len(1){
+/*String::String(const char& c):len(1){
     pData=new char[2];
     pData[0]=c;
     pData[1]='\0';
-}
+}*/
 
 String::~String() {
     delete[] this->pData;
 }
-void String::setsize(size_t size){
+/*void String::setsize(size_t size){
     this->len=size;
-}
+}*/
 
 String::String(const char *str){
     this->len=strlen(str);
@@ -42,7 +42,7 @@ String::String (const String& str){
     strcpy(this->pData,str.c_str());
 }
 
-String& String::operator=(const String str){
+String& String::operator=(const String& str){
     if(str.c_str()==this->pData);
     else {delete[] this->pData;
         this->len=str.size();
@@ -52,7 +52,7 @@ String& String::operator=(const String str){
     return *this;
 }
 
-String& String::operator=(const char* str){
+/*String& String::operator=(const char* str){
     if(str==this->pData);
     else {delete[] this->pData;
         this->len=strlen(str);
@@ -60,9 +60,9 @@ String& String::operator=(const char* str){
         strcpy(pData,str);
     }
     return *this;
-}
+}*/
 
-String String::operator+(const String& str)const{
+/*String String::operator+(const String& str)const{
     size_t ujlen=this->len+str.size()+1;
     char *uj=new char[ujlen];
     strcpy(uj,this->pData);
@@ -70,7 +70,7 @@ String String::operator+(const String& str)const{
     String ujstring(uj);
     delete []uj;
     return ujstring;
-}
+}*/
 
 String& String:: operator+(char c){
     char*uj=new char[this->len+2];
@@ -91,7 +91,7 @@ char& String::operator[](size_t idx){
 
 }
 
-String operator+(char c, String& str){
+/*String operator+(char c, String& str){
     char *uj=new char[str.size()+2];
     uj[0]=c;
     for(size_t i=1; i<str.size()+1;i++){
@@ -101,7 +101,7 @@ String operator+(char c, String& str){
     String ujstr(uj);
     delete[]uj;
     return ujstr;
-}
+}*/
 std::istream& String::getline(std::istream& is, String& s, char div){
     s=String();
     char uj;
